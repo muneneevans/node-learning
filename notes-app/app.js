@@ -40,4 +40,4 @@ log = console.log
 // log(chalk.hex('#DEADED').bold('Bold gray!'));
 
 
-log(chalk.white.bgCyan.bold("success"))
+log(chalk.red.bgBlack.bold("success"))
