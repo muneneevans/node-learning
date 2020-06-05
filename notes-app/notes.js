@@ -7,16 +7,18 @@ const getNotes = () => {
 
 const newNote = (title, description) => {
 	return listNotes((notes) => {
-		let newNotes = [...notes, { title, description }]
+		let newNotes = [...notes]
+		let found = notes.filter((item) => item.title === title)
 
-		return fs.writeFile(
-			"notes/notes.json",
-			JSON.stringify(newNotes),
-			{},
-			() => {
+		if (found.length === 0) {
+			let newNotes = [...notes, { title, description }]
+			fs.writeFile("notes/notes.json", JSON.stringify(newNotes), {}, () => {
 				return true
-			}
-		)
+			})
+			console.log(chalk.black.bgGreen("Note added"))
+		} else {
+			console.log(chalk.black.bgRed("Note already exists"))
+		}
 	})
 }
 
