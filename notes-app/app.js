@@ -24,7 +24,7 @@ yargs.command({
 			type: "string",
 		},
 	},
-	handler: function (argv) {		
+	handler: function (argv) {
 		notes.newNote(argv.title, argv.description)
 	},
 })
@@ -38,12 +38,15 @@ yargs.command({
 	},
 })
 
-// Create list command
+// Create list
 yargs.command({
 	command: "list",
 	describe: "Show avaialable notes",
 	handler: function () {
-		console.log(chalk.green(["\nnote1", "\nnote2", "\nnote3"]))
+		notes.listNotes((data) => {
+			console.log(data)
+		})
+		console.log(chalk.black.bgGreen("Listing successful."))
 	},
 })
 

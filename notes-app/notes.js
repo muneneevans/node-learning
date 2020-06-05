@@ -11,7 +11,14 @@ const newNote = (title, description) => {
 	})
 }
 
+const listNotes = (callback) => {
+	return fs.readFile("notes/notes.json", {}, (error, data) => {
+		return callback(JSON.parse(data.toString()))
+	})
+}
+
 module.exports = {
 	newNote,
 	getNotes,
+	listNotes,
 }
