@@ -5,9 +5,17 @@ const getNotes = () => {
 }
 
 const newNote = (title, description) => {
-	fs.writeFile(`notes/${title}.txt`, `${title} \n${description}`, (e) => {
-		console.log(e)
-		console.log(chalk.black.bgBlue("new note saved."))
+	return listNotes((notes) => {
+		let newNotes = [...notes, { title, description }]
+
+		return fs.writeFile(
+			"notes/notes.json",
+			JSON.stringify(newNotes),
+			{},
+			() => {
+				return true
+			}
+		)
 	})
 }
 
