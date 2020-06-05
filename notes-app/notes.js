@@ -25,14 +25,15 @@ const newNote = (title, description) => {
 const deletNote = (title) => {
 	return listNotes((notes) => {
 		let keep = notes.filter((item) => item.title !== title)
-		if (keep.length > 0) {
-			fs.writeFile("notes/notes.json", JSON.stringify(keep), {}, () => {
-				return true
-			})
-			console.log(chalk.black.bgGreen("Note removed"))
-		} else {
+		fs.writeFile("notes/notes.json", JSON.stringify(keep), {}, () => {
+			return true
+		})
+
+		if (
+			keep.length === notes.length) {
 			console.log(chalk.black.bgYellow("Note does not exist"))
-			return false
+		} else {
+			console.log(chalk.black.bgGreen("Note removed"))
 		}
 	})
 }
