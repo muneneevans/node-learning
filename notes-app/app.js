@@ -24,7 +24,7 @@ yargs.command({
 			type: "string",
 		},
 	},
-	handler: function (argv) {
+	handler: (argv) => {
 		notes.newNote(argv.title, argv.description)
 	},
 })
@@ -40,7 +40,7 @@ yargs.command({
 			type: "string",
 		},
 	},
-	handler: function (argv) {
+	handler: (argv) => {
 		notes.deletNote(argv.title)
 	},
 })
@@ -49,7 +49,7 @@ yargs.command({
 yargs.command({
 	command: "list",
 	describe: "Show avaialable notes",
-	handler: function () {
+	handler: () => {
 		notes.listNotes((data) => {
 			console.log(data)
 		})
@@ -61,7 +61,7 @@ yargs.command({
 yargs.command({
 	command: "read",
 	describe: "Read notes from source",
-	handler: function () {
+	handler: () => {
 		console.log(
 			chalk.green([
 				"lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do eusmod tempor incididunct trabore et dolore magna alique",
@@ -72,7 +72,7 @@ yargs.command({
 yargs.command({
 	command: "commands",
 	describe: "List command and such",
-	handler: function () {
+	handler: () => {
 		console.log(yargs.argv)
 	},
 })
