@@ -37,13 +37,16 @@ yargs.command({
         json: true,
       },
       (error, response) => {
-        console.log(
-          "lattitide: " + response.body.features[0].geometry.coordinates[0]
-        );
-        console.log(
-          "longitude: " + response.body.features[0].geometry.coordinates[1]
-        );
-        
+        if (error) {
+          console.log("Unable to connect to weather service");
+        } else {
+          console.log(
+            "lattitide: " + response.body.features[0].geometry.coordinates[0]
+          );
+          console.log(
+            "longitude: " + response.body.features[0].geometry.coordinates[1]
+          );
+        }
       }
     );
   },
