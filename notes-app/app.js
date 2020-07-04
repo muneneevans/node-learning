@@ -41,7 +41,7 @@ yargs.command({
     },
   },
   handler: (argv) => {
-    notes.deletNote(argv.title);
+    notes.deleteNote(argv.title);
   },
 });
 
