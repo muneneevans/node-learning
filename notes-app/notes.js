@@ -24,14 +24,16 @@ const newNote = (title, description) => {
 
 const deletNote = (title) => {
 	return listNotes((notes) => {
+
+		
 		let keep = notes.filter((item) => item.title !== title)
 		fs.writeFile("notes/notes.json", JSON.stringify(keep), {}, () => {
 			return true
 		})
-
+		
 		if (
 			keep.length === notes.length) {
-			console.log(chalk.black.bgYellow("Note does not exist"))
+				console.log(chalk.black.bgYellow("Note does not exist"))
 		} else {
 			console.log(chalk.black.bgGreen("Note removed"))
 		}
@@ -39,6 +41,7 @@ const deletNote = (title) => {
 }
 
 const listNotes = (callback) => {
+	debugger
 	return fs.readFile("notes/notes.json", {}, (error, data) => {
 		if (error) {
 			return callback([])
